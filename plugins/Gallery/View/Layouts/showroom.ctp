@@ -86,19 +86,21 @@
                     ) ?>
                 </li>
             </ul>
-            <p id="cake-powered">
-                <?php 
-                    if(AuthComponent::user()){
-                        echo $this->HTML->link('Logout', '/users/logout')  .
-                                    '<br/>Welcome ' . $this->HTML->link(AuthComponent::user('full_name'), 
-                                        '/users/view/' . AuthComponent::user('id')) ;
-                    }
-                    else {
-                        echo $this->HTML->link('Login', '/users/login')
-                            .' or '.$this->HTML->link('Register', '/users/add') ;
-                    }
-                ?>
-            </p>
+            <div class="loginoption">
+                <p id="cake-powered">
+                    <?php 
+                        if(AuthComponent::user()){
+                            echo $this->HTML->link('Logout', '/users/logout')  .
+                                '<br/>Welcome ' . $this->HTML->link(AuthComponent::user('full_name'), 
+                                    '/users/view/' . AuthComponent::user('id')) ;
+                        }
+                        else {
+                            echo $this->HTML->link('Login', '/users/login')
+                                .' or '.$this->HTML->link('Register', '/users/add') ;
+                        }
+                    ?>
+                </p>
+            </div>
         </div>
     </div>
     </div>

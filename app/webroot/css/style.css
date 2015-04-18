@@ -862,3 +862,8 @@ pre {
 #url-rewriting-warning {
   display:none;
 }
+
+body {
+    background-image: url("../img/background.jpg");
+    background-repeat: repeat;
+}

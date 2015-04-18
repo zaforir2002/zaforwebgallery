@@ -1,7 +1,13 @@
-<?php $this->Html->css(array(
-    'Gallery.style'
-),
-    array('block' => 'css')) ?>
+<?php 
+    $this->Html->css(
+                    array(
+                        'Gallery.style'
+                    ),
+                    array(
+                        'block' => 'css'
+                    )
+    ); 
+?>
 
 <?php
 if (Configure::read('GalleryOptions.App.interfaced'))
