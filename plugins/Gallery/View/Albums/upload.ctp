@@ -21,7 +21,7 @@
 </div>
 <div class="row">
 <div class="col-md-12">
-<pre><?php print_r($files['0']['for_sale']);?></pre>
+
 <div class="panel panel-default panel-container-album">
     <div class="panel-heading">
         <h2 class="panel-title pull-left">
@@ -228,48 +228,30 @@
                                         <i class="fa fa-trash-o"></i>
                                     </a>
                                 </div>
-                            </div>
-                            
-                            <button class="btn btn-success pull-right btn-sm " data-toggle="collapse" data-target="#<?php echo $PicNo; ?>">
+                            </div>                    
+                            <a href="#" onclick="edit_picture_sale<?php echo $PicNo; ?>();openPopup<?php echo $PicNo; ?>();" class="btn btn-success pull-right btn-sm">
                                 <i class="fa fa-info-circle"></i>
-                                
-                            </button>                            
-                              
-                              <div id="<?php echo $PicNo; ?>" class="panel panel-success collapse">  
-                              <?php echo $this->Form->create('Gallery.Picture', array(
-                                                                                'action' => 'edit',
-                                                                                'id' => 'picture'.$PicNo, 
-                                                                                'default' => false)); ?> 
-                              <?php echo $this->Form->input('id', array('value' => $picture['id'], 'id' => $picture['id'])) ?>
-                              
-                                <?php echo $this->Form->input(
-                                    'for_sale',
-                                    array(
-                                        'options' => array('For sale' => 'For sale', 'Not for sale' => 'Not for sale'), 
-                                        //'default' => $picture['for_sale'],
-                                        'value' => $picture['for_sale'],
-                                        'label' => 'For Sale',
-                                        'placeholder' => 'Ex: xbox-360'
-                                    )
-                                )?>
-
+                            </a>
                             
-                                <?php echo $this->Form->input(
-                                    'price',
-                                    array(                                        
-                                        'value' => $picture['price'],
-                                        'label' => 'Price',
-                                        'placeholder' => 'Ex: xbox-360'
-                                    )
-                                ) ?>
-
-                            
-                            <button class="btn btn-success pull-right btn-sm " data-toggle="collapse" data-target="#<?php echo $PicNo; ?>">
-                                <i class="fa fa-check"></i>
-                                Save
-                            </button>
+                            <div id="pop<?php echo $PicNo; ?>" class="popup_open">
+                                <div class="popup_cancel" onclick="closePopup<?php echo $PicNo; ?>();" >X</div>
+                              <div id="picture<?php echo $PicNo; ?>">  
+                              
                               </div>
+                            </div>
+                              <script>
+                                  function edit_picture_sale<?php echo $PicNo; ?>(){
+                                        document.getElementById("picture<?php echo $PicNo; ?>").innerHTML='<object type="text/html" data="/zaforwebgallery/gallerypictures/edit/<?php echo $picture['id']; ?>" height="250" width="200"></object>';
+                                    }
+                                    function openPopup<?php echo $PicNo; ?>() {
+                                        document.getElementById("pop<?php echo $PicNo; ?>").style.display = 'block';
+                                    }
+
+                                    function closePopup<?php echo $PicNo; ?>() {
+                                        document.getElementById("pop<?php echo $PicNo; ?>").style.display = 'none';
+                                    }
                               
+                            </script>
 
                         </div>
                     <?php $PicNo++; } ?>
