@@ -74,6 +74,8 @@ class UsersController extends AppController {
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));
+		$this->loadModel('GalleryAlbum');
+		$this->set('galleryAlbum', $this->GalleryAlbum->findAllByModelId($id));
 	}
 
 /**

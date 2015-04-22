@@ -168,18 +168,29 @@ class GalleryHelper extends AppHelper
     private function _thumbnailTmpl($picture, $style = 'medium')
     {
         $Pcreated = CakeTime::format($picture['created'], '%B %e, %Y %H:%M %p');
-        
+        if($picture['for_sale'] == 'For sale'){
+            if(AuthComponent::user()){
+                $PforSale = $picture['for_sale'] . ': £' . $picture['price'] . 
+                        ' <button onclick="window.alert(\'Thank you! You will be contacted shortly.\');" class="btn btn-success pull-right btn-sm" title="Click to buy.">Buy</button>';
+            }else{
+                $PforSale = $picture['for_sale'] . ': £' . $picture['price'] . 
+                        ' <a href="/users/login" class="btn btn-success pull-right btn-sm" title="Login or Singup for buy.">Buy</a>';
+            }
+        }
+        else{
+            $PforSale = $picture['for_sale'];   
+        }
+
         echo '
         <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
-                <a href="' . $picture['link'] . '" class="swipebox">
-                    <img src="' . $picture['styles'][$style] . '" alt="">
-                
-                    <div class="caption">
-                        <h4>' . $picture['name'] . '</h4>
-                        <h5><i class="fa fa-calendar"></i> ' . $Pcreated . '</h5>
-                    </div>
+                <a href="' . str_replace('\\','/',$picture['link']) . '" class="swipebox">
+                    <img src="' . str_replace('\\','/',$picture['styles'][$style]) . '" alt="">
                 </a>
+                    <div class="caption">
+                        <h4>' . $picture['name'] . '</h4>                        
+                        <h5><i class="fa fa-dollar"></i> ' . $PforSale . '</h5>
+                    </div>
             </div>
         </div>
         ';

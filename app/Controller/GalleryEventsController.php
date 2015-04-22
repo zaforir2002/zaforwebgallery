@@ -14,6 +14,7 @@ class GalleryEventsController extends AppController {
  *
  * @var array
  */
+	//public $uses = array('GalleryEvent', 'GalleryAlbum');
 	public $components = array('Paginator', 'Session');
 
 
@@ -45,6 +46,8 @@ class GalleryEventsController extends AppController {
 		}
 		$options = array('conditions' => array('GalleryEvent.' . $this->GalleryEvent->primaryKey => $id));
 		$this->set('galleryEvent', $this->GalleryEvent->find('first', $options));
+		$this->loadModel('GalleryAlbum');
+		$this->set('galleryAlbum', $this->GalleryAlbum->findAllByEventId($id));
 	}
 
 /**
@@ -55,6 +58,9 @@ class GalleryEventsController extends AppController {
 	public function add() {
 		if ($this->request->is('post')) {
 			$this->GalleryEvent->create();
+			if(empty($this->request->data['GalleryEvent']['user_id'])){
+				$this->request->data['GalleryEvent']['user_id'] = AuthComponent::user('id');
+			}
 			if ($this->GalleryEvent->save($this->request->data)) {
 				$this->Session->setFlash(__('The gallery event has been saved.'));
 				return $this->redirect(array('action' => 'index'));

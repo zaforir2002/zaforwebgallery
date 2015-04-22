@@ -1,15 +1,15 @@
 <div class="galleryEvents index">
 	<h2><?php echo __('Gallery Events'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
+	<table>
 	<thead>
 	<tr>
 	
-			<th><?php echo $this->Paginator->sort('Title'); ?></th>
-			<th><?php echo $this->Paginator->sort('Location'); ?></th>
-			<th><?php echo $this->Paginator->sort('Start'); ?></th>
-			<th><?php echo $this->Paginator->sort('End'); ?></th>
-			<th><?php echo $this->Paginator->sort('Organised by'); ?></th>
-			<?php if(AuthComponent::user()) : ?>
+			<th><?php echo $this->Paginator->sort('title'); ?></th>
+			<th><?php echo $this->Paginator->sort('location'); ?></th>
+			<th><?php echo $this->Paginator->sort('event_start_date'); ?></th>
+			<th><?php echo $this->Paginator->sort('event_start_date'); ?></th>
+			<th><?php echo $this->Paginator->sort('user_id'); ?></th>
+			<?php if(AuthComponent::user() && AuthComponent::user('type') != 'Buyer') : ?>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 			<?php endif; ?>
 	</tr>
@@ -22,7 +22,7 @@
 		<td><?php echo h($galleryEvent['GalleryEvent']['location']); ?>&nbsp;</td>
 		<td><?php echo h(CakeTime::format($galleryEvent['GalleryEvent']['event_start_date'], '%e/%m/%y %H:%M %p')); ?>&nbsp;</td>
 		<td><?php echo h(CakeTime::format($galleryEvent['GalleryEvent']['event_end_date'], '%e/%m/%y %H:%M %p')); ?>&nbsp;</td>
-		<?php if(!AuthComponent::user()) { ?>
+		<?php if(!AuthComponent::user() || AuthComponent::user('type') == 'Buyer') { ?>
 		<td>
 			<?php echo h($galleryEvent['User']['full_name']); ?>
 		</td>

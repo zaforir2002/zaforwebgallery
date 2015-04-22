@@ -59,15 +59,21 @@ class AlbumsController extends GalleryAppController
         } else {
             # If the gallery doesnt exists, create a new one and redirect back to this page with the
             # gallery_id
-            $album = $this->Album->init($model, $model_id);
+            if($model_id == AuthComponent::user('id') && $model == AuthComponent::user('username')){
+                $album = $this->Album->init($model, $model_id);
 
-            # Redirect back to this page with an album ID
-            $this->redirect(
-                array(
-                    'action' => 'upload',
-                    'gallery_id' => $album['Album']['id']
-                )
-            );
+                # Redirect back to this page with an album ID
+                $this->redirect(
+                    array(
+                        'action' => 'upload',
+                        'gallery_id' => $album['Album']['id']
+                    )
+                );
+            }
+            else{
+                $this->Session->setFlash(__('Not Authorised.'));
+                return $this->redirect($this->Auth->redirectUrl());
+            }
         }
 
         $files = $album['Picture'];

@@ -8,8 +8,10 @@
 		echo $this->Form->input('full_name');
 		echo $this->Form->input('type',array(
 										'label' => 'Select user type  ',
-										'options' => array('Artist' => 'Artist', 'Buyer' => 'Buyer'), 
-										'default' => 'Artist'));
+										'options' => array('' => 'Please select', 'Artist' => 'Artist', 'Buyer' => 'Buyer'), 
+										'default' => 'Artist'
+										)
+								);
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit')); ?>
