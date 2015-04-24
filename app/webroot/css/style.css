@@ -248,10 +248,12 @@ div.actions h3 {
 div.loginoption {
   float:right;
   padding-top:1.5%;
+  color: #fff;
 }
 
 /** Tables **/
 table {
+  border-spacing: 5px;
   border-right:0;
   clear: both;
   color: #333;
@@ -354,13 +356,11 @@ table td.actions a {
 dl {
   line-height: 2em;
   margin: 0em 0em;
-  width: 60%;
+  width: 100%;
 }
-dl dd:nth-child(4n+2),
-dl dt:nth-child(4n+1) {
-  background: #f4f4f4;
-}
+
 dt  {
+    background: #f4f4f4;
     clear:left;
     float:left;
     line-height:24px;
@@ -368,9 +368,9 @@ dt  {
 }
 
 dd {
-    clear:right;
-    line-height:18px;
-    padding:4px 0 4px 40px;
+    float:left;
+    line-height:24px;
+    padding:4px 0 4px 0px;
 }
 
 
@@ -861,4 +861,20 @@ pre {
 /** Elements **/
 #url-rewriting-warning {
   display:none;
+}
+
+body {
+  background-image: url("../img/background.jpg");
+  background-repeat: repeat;
+}
+
+body.picEdit {
+  background-image:none
+}
+
+h6 {
+  line-height:1px;
+  font-style: italic;
+  font-size: 12px;
+  padding: 0px 0px 0px 0px;
 }

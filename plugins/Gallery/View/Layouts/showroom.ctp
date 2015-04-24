@@ -9,7 +9,7 @@
 <html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
     <title><?php echo $title_for_layout; ?></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
@@ -58,54 +58,64 @@
                 <li>
                     <?php echo $this->Html->link(
                         'Events',
-                        '/galleryevents/index'
+                        '/galleryevents'
                     ) ?>
                 </li>
                 <li>
                     <?php echo $this->Html->link(
                         'News',
-                        array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                        '/news'
                     ) ?>
                 </li>
                 <li>
                     <?php echo $this->Html->link(
                         'Blogs',
-                        array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                        '/topics'
                     ) ?>
                 </li>
                 <li>
                     <?php echo $this->Html->link(
                         'About us',
-                        array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                        '/aboutus'
                     ) ?>
                 </li>
                 <li>
                     <?php echo $this->Html->link(
                         'Contact us',
-                        array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                        '/contacts'
+                    ) ?>
+                </li>
+                <li>
+                    <?php echo $this->Html->link(
+                        'Report a Bug',
+                        'http://192.168.1.8/enter_bug.cgi?product=zGallery',
+                        array('target' => '_blank')
                     ) ?>
                 </li>
             </ul>
-            <p id="cake-powered">
+            <div class="loginoption">
                 <?php 
                     if(AuthComponent::user()){
                         echo $this->HTML->link('Logout', '/users/logout')  .
-                                    '<br/>Welcome ' . $this->HTML->link(AuthComponent::user('full_name'), 
-                                        '/users/view/' . AuthComponent::user('id')) ;
+                            '<br/>Welcome ' . $this->HTML->link(AuthComponent::user('full_name'), 
+                                '/users/view/' . AuthComponent::user('id')) ;
                     }
                     else {
                         echo $this->HTML->link('Login', '/users/login')
                             .' or '.$this->HTML->link('Register', '/users/add') ;
                     }
                 ?>
-            </p>
+            </div>
         </div>
     </div>
     </div>
-    <?php echo $this->Session->flash(); ?>
-    <?php echo $this->fetch('content'); ?>
+    <div id="content">
+        <?php echo $this->Session->flash(); ?>
+        <?php echo $this->fetch('content'); ?>
+    </div>
     <br/>
-    <div id="footer">            
+    <div id="footer">          
+        <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>  
         <p id="cake-powered">
             <?php echo "powered by " . $this->Html->image('zWeb.png'); ?>
         </p>

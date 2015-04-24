@@ -23,7 +23,13 @@ class UsersContactsController extends AppController {
  */
 	public function index() {
 		$this->UsersContact->recursive = 0;
-		$this->set('usersContacts', $this->Paginator->paginate());
+		$options = array('User.id' => AuthComponent::user('id'));
+		if(AuthComponent::user('type') == 'Admin'){
+			$this->set('usersContacts', $this->Paginator->paginate());
+		}
+		else{
+			$this->set('usersContacts', $this->Paginator->paginate($options));
+		}
 	}
 
 /**
@@ -81,6 +87,7 @@ class UsersContactsController extends AppController {
 		} else {
 			$options = array('conditions' => array('UsersContact.' . $this->UsersContact->primaryKey => $id));
 			$this->request->data = $this->UsersContact->find('first', $options);
+			$this->set('usersContacts', $this->UsersContact->find('first', $options));
 		}
 		$users = $this->UsersContact->User->find('list');
 		$this->set(compact('users'));

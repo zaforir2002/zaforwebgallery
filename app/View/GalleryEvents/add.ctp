@@ -6,7 +6,9 @@
 		echo $this->Form->input('title');
 		echo $this->Form->input('event_start_date');
 		echo $this->Form->input('event_end_date');
-		echo $this->Form->input('user_id');
+		if(AuthComponent::user('type') == 'Admin'){
+			echo $this->Form->input('user_id');
+		}
 		echo $this->Form->input('location',array(
 										'label' => 'Select location  ',
 										'options' => array(

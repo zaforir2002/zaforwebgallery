@@ -53,7 +53,7 @@
 		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
 		<li><?php echo $this->Html->link(__('List Users Contacts'), array('controller' => 'users_contacts', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Users Contact'), array('controller' => 'users_contacts', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Albums'), array('controller' => 'albums', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Albums'), array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Album'), array('controller' => 'albums', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

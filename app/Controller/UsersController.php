@@ -74,6 +74,8 @@ class UsersController extends AppController {
 		}
 		$options = array('conditions' => array('User.' . $this->User->primaryKey => $id));
 		$this->set('user', $this->User->find('first', $options));
+		$this->loadModel('GalleryAlbum');
+		$this->set('galleryAlbum', $this->GalleryAlbum->findAllByModelId($id));
 	}
 
 /**
@@ -107,7 +109,7 @@ class UsersController extends AppController {
 		}
 		if ($this->request->is(array('post', 'put'))) {
 			if ($this->User->save($this->request->data)) {
-				$this->Session->setFlash(__('The user has been saved.'));
+				$this->Session->setFlash(__('The user details has been updated.'));
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.'));

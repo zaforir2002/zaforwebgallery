@@ -110,7 +110,7 @@ class GalleryEvent extends AppModel {
  */
 	public $hasMany = array(
 		'Album' => array(
-			'className' => 'Gallery.Album',
+			'className' => 'GalleryAlbum',
 			'foreignKey' => 'event_id',
 			'dependent' => false,
 			'conditions' => '',

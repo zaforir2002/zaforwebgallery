@@ -32,6 +32,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
@@ -60,41 +61,46 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
                         <li>
                             <?php echo $this->Html->link(
                                 'News',
-                                array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                                array('controller' => 'news', 'action' => 'index',)
                             ) ?>
                         </li>
                         <li>
                             <?php echo $this->Html->link(
                                 'Blogs',
-                                array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                                array('controller' => 'topics', 'action' => 'index',)
                             ) ?>
                         </li>
                         <li>
                             <?php echo $this->Html->link(
                                 'About us',
-                                array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                                array('controller' => 'aboutus', 'action' => 'index')
                             ) ?>
                         </li>
                         <li>
                             <?php echo $this->Html->link(
                                 'Contact us',
-                                array('controller' => 'gallery', 'action' => 'index', 'plugin' => 'gallery')
+                                array('controller' => 'contacts', 'action' => 'add')
+                            ) ?>
+                        </li>
+                        <li>
+                            <?php echo $this->Html->link(
+                                'Report a Bug',
+                                'http://192.168.1.8/enter_bug.cgi?product=zGallery',
+                                array('target' => '_blank')
                             ) ?>
                         </li>
                     </ul>
                     <div class="loginoption">
-                        <p id="cake-powered">
-                            <?php 
-                                if(AuthComponent::user()){
-                                    echo $this->HTML->link('Logout', array('controller' => 'users', 'action' => 'logout')) .
-                                        '<br/>Welcome ' . $this->HTML->link(AuthComponent::user('full_name'), array('controller' => 'users', 'action' => 'view', AuthComponent::user('id'))) ;
-                                }
-                                else {
-                                    echo $this->HTML->link('Login', array('controller' => 'users', 'action' => 'login'))
-                                        .' or '.$this->HTML->link('Register', array('controller' => 'users', 'action' => 'add')) ;
-                                }
-                            ?>
-                        </p>
+                        <?php 
+                            if(AuthComponent::user()){
+                                echo $this->HTML->link('Logout', array('controller' => 'users', 'action' => 'logout')) .
+                                    '<br/>Welcome ' . $this->HTML->link(AuthComponent::user('full_name'), array('controller' => 'users', 'action' => 'view', AuthComponent::user('id'))) ;
+                            }
+                            else {
+                                echo $this->HTML->link('Login', array('controller' => 'users', 'action' => 'login'))
+                                    .' or '.$this->HTML->link('Register', array('controller' => 'users', 'action' => 'add')) ;
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -105,7 +111,8 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<br/>
-		<div id="footer">            
+		<div id="footer">  
+            <script charset="Shift_JIS" src="http://chabudai.sakura.ne.jp/blogparts/honehoneclock/honehone_clock_tr.js"></script>          
                 <p id="cake-powered">
                     <?php echo "powered by " . $this->Html->image('zWeb.png'); ?>
                 </p>
